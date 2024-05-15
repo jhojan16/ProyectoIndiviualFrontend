@@ -172,14 +172,21 @@ const ViewAll = () => {
                         <Box className="bg-white w-full mb-5 rounded-xl">
                             <Typography variant='h5' align="center">Datos almacenado de la cantidad de luz (%)</Typography>
                         </Box>
-                        <Container className="bg-white max-h-96 overflow-y-auto mb-5 rounded-xl">
-                            {userNodoUltrasonido && (
-                                <Orders
-                                    orders={userNodoUltrasonido}
-                                />
-                            )}
-                        </Container>
-
+                        <div className="flex flex-row justify-between w-full mb-5">
+                            <Container className="bg-white max-h-96 overflow-y-auto rounded-xl">
+                                {userNodoUltrasonido && (
+                                    <Orders
+                                        orders={userNodoUltrasonido}
+                                    />
+                                )}
+                            </Container>
+                            <Box className="flex flex-col bg-white ml-3 rounded-2xl">
+                                <Typography variant='h5' align="center">Cantidad de luz actual</Typography>
+                                <Gauge height={200}
+                                    value={userNodoUltrasonido.map(entry => entry.value).slice(-1)[0]}
+                                    valueMax={100} />
+                            </Box>
+                        </div>
                     </>
                 )}
             </Container>
